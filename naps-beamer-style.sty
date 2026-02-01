@@ -219,16 +219,16 @@
     \node[anchor=north east] at ([xshift=-1cm, yshift=-1cm]current page.north east)
       {\includegraphics[height=2.0cm]{naps-logo.jpg}};
 
-    %% Title box (no border)
+    %% Title box (no border) - wide enough for long titles
     \node[
       anchor=center,
-      minimum width=10cm,
+      minimum width=0.9\paperwidth,
       minimum height=4cm,
       inner sep=0.8cm
     ] (titlebox) at ([yshift=0.5cm]current page.center) {};
 
     %% Title content inside the box
-    \node[anchor=center, text width=9cm, align=center] at (titlebox.center) {
+    \node[anchor=center, text width=0.85\paperwidth, align=center] at (titlebox.center) {
       {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
       \ifx\insertsubtitle\@empty\else
         \\[0.3cm]
