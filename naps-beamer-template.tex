@@ -1,0 +1,269 @@
+%% =============================================================================
+%% NAPS Beamer Template by Brighter & Claude
+%% =============================================================================
+%%
+%% This is a TEMPLATE file - replace placeholder content with your own.
+%%
+%% COMPILATION:
+%%   For best results (Calibri font), compile with XeLaTeX or LuaLaTeX:
+%%     xelatex naps-beamer-template.tex
+%%   or
+%%     lualatex naps-beamer-template.tex
+%%
+%%   If using pdfLaTeX, Helvetica will be used as a fallback font.
+%%
+%% REQUIRED FILES:
+%%   1. naps-logo.jpg        - NAPS logo for header/footer
+%%   2. naps-beamer-style.sty - Style definitions (must be in same directory)
+%%   3. fonts/               - (Optional) Calibri font files for custom font
+%%      ├── calibri-regular.ttf
+%%      ├── calibri-bold.ttf
+%%      ├── calibri-italic.ttf
+%%      └── calibri-bold-italic.ttf
+%%
+%% USAGE:
+%%   1. Customize the metadata below (title, author, date)
+%%   2. Use the provided frame environments for different slide types
+%%
+%% =============================================================================
+
+\documentclass[aspectratio=169, 11pt]{beamer}
+
+%% Load NAPS style
+\usepackage{naps-beamer-style}
+
+%% -----------------------------------------------------------------------------
+%% Metadata (CUSTOMIZE THESE)
+%% -----------------------------------------------------------------------------
+\title{Course Code: Course Name}
+\subtitle{Week X Lecture\\An Overview of Topic Name}
+\author{[Name Here]}
+\institute{National Academy of Professional Studies}
+% For current date use: \date{\today}
+\date{}
+
+%% =============================================================================
+%% DOCUMENT BEGINS
+%% =============================================================================
+\begin{document}
+
+%% -----------------------------------------------------------------------------
+%% Title Slide
+%% -----------------------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Acknowledgement of Country (optional)
+%% -----------------------------------------------------------------------------
+\begin{frame}{Acknowledgement of Country}
+  \twocols{
+    % Include Aboriginal flag or other image
+    \includegraphics[width=\linewidth]{aboriginal-flag.png}
+  }{
+    \begin{justify}
+        The National Academy of Professional Studies acknowledges the traditional
+        custodians of the land, on whose land we gather to teach and learn.
+        
+        \vspace{1em}
+        
+        We pay respects to their Elders past and present, acknowledge the Aboriginal
+        and Torres Strait Islander people and celebrate their diversity and ongoing
+        cultures and connections to the lands and waters across Australia.
+    \end{justify}
+  }
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Welcome Slide
+%% -----------------------------------------------------------------------------
+\begin{frame}{Welcome - Week X}
+  \twocols{
+    \begin{itemize}
+      \item \textbf{Day:} Mondays
+      \item \textbf{Trimester:} Term X
+    \end{itemize}
+  }{
+    \begin{block}{Lecture}
+      X:00 PM -- X:00 PM
+    \end{block}
+    \vspace{0.3cm}
+    \begin{block}{Tutorial}
+      X:00 PM -- X:00 PM
+    \end{block}
+  }
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Learning Outcomes
+%% -----------------------------------------------------------------------------
+\begin{frame}{Learning Outcomes}
+  \textbf{By the end of this week, you will be able to:}
+  \begin{itemize}
+    \item \textbf{First learning outcome}
+      \begin{itemize}
+        \item Sub-point explanation
+        \item Another sub-point
+      \end{itemize}
+    \item \textbf{Second learning outcome}
+      \begin{itemize}
+        \item Sub-point explanation
+      \end{itemize}
+    \item \textbf{Third learning outcome}
+  \end{itemize}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Outline
+%% -----------------------------------------------------------------------------
+\begin{frame}{Outline}
+  \begin{itemize}
+    \item \textbf{Introduction:} Why This Topic Matters
+    \item \textbf{Main Concepts}
+      \begin{itemize}
+        \item First concept
+        \item Second concept
+      \end{itemize}
+    \item \textbf{Practical Applications}
+    \item \textbf{Summary and Q\&A}
+  \end{itemize}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Section Break
+%% -----------------------------------------------------------------------------
+\section{Main Topic}
+
+%% -----------------------------------------------------------------------------
+%% Example: Content Slide with Block
+%% -----------------------------------------------------------------------------
+\begin{frame}{Content Slide Example}
+  This is a regular content slide with various elements.
+
+  \begin{block}{Definition}
+    A block can be used to highlight important definitions or concepts.
+  \end{block}
+
+  \begin{alertblock}{Important}
+    Alert blocks draw attention to critical information.
+  \end{alertblock}
+
+  \begin{exampleblock}{Example}
+    Example blocks showcase practical applications.
+  \end{exampleblock}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Two-Column Layout
+%% -----------------------------------------------------------------------------
+\begin{frame}{Two-Column Layout Example}
+  \twocols{
+    \textbf{Left Column}
+    \begin{itemize}
+      \item First point
+      \item Second point
+      \item Third point
+    \end{itemize}
+  }{
+    \textbf{Right Column}
+    \begin{itemize}
+      \item Corresponding point
+      \item Another point
+      \item Final point
+    \end{itemize}
+  }
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Code Listing
+%% -----------------------------------------------------------------------------
+\begin{frame}[fragile]{Code Example}
+  \begin{lstlisting}[language=Java]
+public class Example {
+    // This is a comment
+    public static void main(String[] args) {
+        System.out.println("Hello, NAPS!");
+    }
+}
+  \end{lstlisting}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Table
+%% -----------------------------------------------------------------------------
+\begin{frame}{Table Example}
+  \begin{center}
+    \begin{tabular}{lcc}
+      \toprule
+      \textbf{Feature} & \textbf{Option A} & \textbf{Option B} \\
+      \midrule
+      First feature    & Yes               & No                \\
+      Second feature   & No                & Yes               \\
+      Third feature    & Yes               & Yes               \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Summary
+%% -----------------------------------------------------------------------------
+\section{Summary}
+
+\begin{frame}{Summary - Key Takeaways}
+  \textbf{What you should remember from this week:}
+  \begin{itemize}
+    \item First key takeaway
+    \item Second key takeaway
+    \item Third key takeaway
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \begin{keyinsight}
+    The main concept ties everything together by...
+  \end{keyinsight}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: Questions Slide
+%% -----------------------------------------------------------------------------
+\begin{frame}{Questions and Discussion}
+  \textbf{Reflection Questions:}
+  \begin{itemize}
+    \item Can you identify the key concepts from today's lecture?
+    \item How would you apply these concepts in practice?
+    \item What questions do you have?
+  \end{itemize}
+
+  \vspace{1cm}
+  \centering
+  {\Large\textcolor{napsAccent3}{What questions do you have?}}
+\end{frame}
+
+%% -----------------------------------------------------------------------------
+%% Example: References
+%% -----------------------------------------------------------------------------
+\begin{frame}{References \& Further Reading}
+  \twocols{
+    \textbf{Official Documentation:}
+    \begin{itemize}
+      \item Resource 1
+      \item Resource 2
+    \end{itemize}
+
+    \textbf{Recommended Articles:}
+    \begin{itemize}
+      \item Article 1
+      \item Article 2
+    \end{itemize}
+  }{
+    \textbf{Books for Deeper Study:}
+    \begin{itemize}
+      \item ``Book Title'' -- Author
+      \item ``Another Book'' -- Author
+    \end{itemize}
+  }
+\end{frame}
+
+\end{document}

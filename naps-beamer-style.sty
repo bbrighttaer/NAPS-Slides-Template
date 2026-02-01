@@ -1,0 +1,319 @@
+%% =============================================================================
+%% NAPS Beamer Style by Brighter & Claude
+%% Based on the National Academy of Professional Studies (NAPS) PowerPoint design
+%% =============================================================================
+%%
+%% FONT SETUP:
+%% This template uses Calibri as the primary font (matching NAPS branding).
+%% To use Calibri, you must:
+%%   1. Compile with XeLaTeX or LuaLaTeX (not pdfLaTeX)
+%%   2. Place the fonts folder containing Calibri TTF files in the same
+%%      directory as your .tex file, with this structure:
+%%
+%%      your-presentation/
+%%      ├── your-slides.tex
+%%      ├── naps-beamer-style.sty
+%%      └── fonts/
+%%          ├── calibri-regular.ttf
+%%          ├── calibri-bold.ttf
+%%          ├── calibri-italic.ttf
+%%          └── calibri-bold-italic.ttf
+%%
+%% If the fonts folder is missing or you compile with pdfLaTeX, the template
+%% will automatically fall back to Helvetica.
+%%
+%% =============================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{naps-beamer-style}[2026/02/01 NAPS Beamer Style]
+
+%% -----------------------------------------------------------------------------
+%% Package Imports
+%% -----------------------------------------------------------------------------
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage{listings}          % For code listings
+\RequirePackage{booktabs}          % For professional tables
+\RequirePackage{amsmath,amssymb}   % Math support
+\RequirePackage{iftex}             % Detect XeLaTeX/LuaLaTeX
+\RequirePackage{ragged2e}
+
+%% -----------------------------------------------------------------------------
+%% Font Configuration (Calibri with Helvetica fallback)
+%% -----------------------------------------------------------------------------
+\ifXeTeX
+  \RequirePackage{fontspec}
+  \IfFontExistsTF{Calibri}{%
+    %% System-installed Calibri found
+    \setmainfont{Calibri}
+    \setsansfont{Calibri}
+  }{%
+    %% Try loading from local fonts folder
+    \IfFileExists{fonts/calibri-regular.ttf}{%
+      \setmainfont{Calibri}[
+        Path = fonts/,
+        Extension = .ttf,
+        UprightFont = *-regular,
+        BoldFont = *-bold,
+        ItalicFont = *-italic,
+        BoldItalicFont = *-bold-italic
+      ]
+      \setsansfont{Calibri}[
+        Path = fonts/,
+        Extension = .ttf,
+        UprightFont = *-regular,
+        BoldFont = *-bold,
+        ItalicFont = *-italic,
+        BoldItalicFont = *-bold-italic
+      ]
+    }{%
+      %% Fallback to Helvetica
+      \PackageWarning{naps-beamer-style}{Calibri fonts not found. Using Helvetica as fallback.}
+      \setmainfont{Helvetica}
+      \setsansfont{Helvetica}
+    }
+  }
+\else\ifLuaTeX
+  \RequirePackage{fontspec}
+  \IfFontExistsTF{Calibri}{%
+    %% System-installed Calibri found
+    \setmainfont{Calibri}
+    \setsansfont{Calibri}
+  }{%
+    %% Try loading from local fonts folder
+    \IfFileExists{fonts/calibri-regular.ttf}{%
+      \setmainfont{Calibri}[
+        Path = fonts/,
+        Extension = .ttf,
+        UprightFont = *-regular,
+        BoldFont = *-bold,
+        ItalicFont = *-italic,
+        BoldItalicFont = *-bold-italic
+      ]
+      \setsansfont{Calibri}[
+        Path = fonts/,
+        Extension = .ttf,
+        UprightFont = *-regular,
+        BoldFont = *-bold,
+        ItalicFont = *-italic,
+        BoldItalicFont = *-bold-italic
+      ]
+    }{%
+      %% Fallback to Helvetica
+      \PackageWarning{naps-beamer-style}{Calibri fonts not found. Using Helvetica as fallback.}
+      \setmainfont{Helvetica}
+      \setsansfont{Helvetica}
+    }
+  }
+\else
+  %% pdfLaTeX: Use Helvetica (Calibri not available)
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{helvet}
+  \renewcommand{\familydefault}{\sfdefault}
+  \PackageWarning{naps-beamer-style}{Using pdfLaTeX. Compile with XeLaTeX or LuaLaTeX for Calibri font support.}
+\fi\fi
+
+%% -----------------------------------------------------------------------------
+%% Color Definitions (Blue Warm Theme)
+%% -----------------------------------------------------------------------------
+%% These colors match the NAPS PowerPoint template
+\definecolor{napsDark}{HTML}{242852}      % Dark navy (dk2)
+\definecolor{napsLight}{HTML}{ACCBF9}     % Ice blue (lt2)
+\definecolor{napsAccent1}{HTML}{4A66AC}   % Blue
+\definecolor{napsAccent2}{HTML}{629DD1}   % Light blue
+\definecolor{napsAccent3}{HTML}{297FD5}   % Bright blue (titles)
+\definecolor{napsAccent4}{HTML}{7F8FA9}   % Slate gray
+\definecolor{napsAccent5}{HTML}{5AA2AE}   % Teal
+\definecolor{napsAccent6}{HTML}{9D90A0}   % Dusty purple
+\definecolor{napsHyperlink}{HTML}{9454C3} % Purple (links)
+\definecolor{napsFooter}{HTML}{566E7C}    % Muted footer text (50% of lt2)
+\definecolor{napsWhite}{HTML}{FFFFFF}     % White
+\definecolor{napsBlack}{HTML}{000000}     % Black
+
+%% -----------------------------------------------------------------------------
+%% Beamer Theme Configuration
+%% -----------------------------------------------------------------------------
+\usetheme{default}
+\usecolortheme{default}
+
+%% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%% Set fonts
+\usefonttheme{professionalfonts}
+\setbeamerfont{title}{size=\LARGE, series=\bfseries}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize, series=\mdseries}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{footline}{size=\scriptsize}
+
+%% Set colors
+\setbeamercolor{structure}{fg=napsAccent3}
+\setbeamercolor{title}{fg=napsDark}
+\setbeamercolor{frametitle}{fg=napsAccent3}
+\setbeamercolor{framesubtitle}{fg=napsAccent4}
+\setbeamercolor{normal text}{fg=napsBlack}
+\setbeamercolor{alerted text}{fg=napsAccent3}
+\setbeamercolor{example text}{fg=napsAccent5}
+
+%% Item/bullet colors
+\setbeamercolor{item}{fg=napsAccent3}
+\setbeamercolor{subitem}{fg=napsAccent2}
+\setbeamercolor{subsubitem}{fg=napsAccent4}
+
+%% Block colors
+\setbeamercolor{block title}{bg=napsAccent3, fg=napsWhite}
+\setbeamercolor{block body}{bg=napsLight!30, fg=napsBlack}
+\setbeamercolor{block title alerted}{bg=napsAccent1, fg=napsWhite}
+\setbeamercolor{block body alerted}{bg=napsLight!20, fg=napsBlack}
+\setbeamercolor{block title example}{bg=napsAccent5, fg=napsWhite}
+\setbeamercolor{block body example}{bg=napsAccent5!10, fg=napsBlack}
+
+%% Itemize/enumerate templates
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+%% -----------------------------------------------------------------------------
+%% Frame Title Template
+%% -----------------------------------------------------------------------------
+\setbeamertemplate{frametitle}{%
+  \vspace{0.5cm}
+  \hspace{0.3cm}
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle
+  \ifx\insertframesubtitle\@empty\else
+    \\[0.1cm]
+    \hspace{0.3cm}
+    \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle
+  \fi
+}
+
+%% -----------------------------------------------------------------------------
+%% Footer Template
+%% -----------------------------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1ex,left]{footline}%
+      \hspace{3mm}{\scriptsize\textcolor{napsFooter}{\insertframenumber}}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.50\paperwidth,ht=2.5ex,dp=1ex,center]{footline}%
+      {\scriptsize\itshape\textcolor{napsAccent3}{Turning seekers into achievers: Now's the time, NAPS' the Place}}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1ex,right]{footline}%
+      \includegraphics[height=10ex]{naps-logo.jpg}\hspace{3mm}
+    \end{beamercolorbox}%
+  }%
+  \vskip2pt%
+}
+
+%% -----------------------------------------------------------------------------
+%% Title Page Template
+%% -----------------------------------------------------------------------------
+\defbeamertemplate*{title page}{naps}[1][]{%
+  \begin{tikzpicture}[remember picture, overlay]
+    %% Logo at top right
+    \node[anchor=north east] at ([xshift=-1cm, yshift=-1cm]current page.north east)
+      {\includegraphics[height=2.0cm]{naps-logo.jpg}};
+
+    %% Title box (no border)
+    \node[
+      anchor=center,
+      minimum width=10cm,
+      minimum height=4cm,
+      inner sep=0.8cm
+    ] (titlebox) at ([yshift=0.5cm]current page.center) {};
+
+    %% Title content inside the box
+    \node[anchor=center, text width=9cm, align=center] at (titlebox.center) {
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
+      \ifx\insertsubtitle\@empty\else
+        \\[0.3cm]
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{structure}\insertsubtitle}
+      \fi
+    };
+
+    %% Author below the box
+    \node[anchor=north, text=napsDark] at ([yshift=-0.5cm]titlebox.south) {
+      {\usebeamerfont{author}Lecturer: \insertauthor}
+    };
+
+    %% Date
+    \node[anchor=north, text=napsAccent4] at ([yshift=-1.2cm]titlebox.south) {
+      {\usebeamerfont{date}\insertdate}
+    };
+
+  \end{tikzpicture}
+}
+
+%% -----------------------------------------------------------------------------
+%% Section Page Template
+%% -----------------------------------------------------------------------------
+\AtBeginSection[]{
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+      %% Section title centered
+      \node[
+        anchor=center,
+        text=napsAccent3,
+        font=\Huge\bfseries
+      ] at ([yshift=0.5cm]current page.center) {\insertsection};
+
+      %% Optional section number
+      \node[
+        anchor=north,
+        text=napsAccent4,
+        font=\large
+      ] at ([yshift=-0.5cm]current page.center) {Section \thesection};
+    \end{tikzpicture}
+  \end{frame}
+}
+
+%% -----------------------------------------------------------------------------
+%% Custom Commands
+%% -----------------------------------------------------------------------------
+
+%% Highlight text in accent color
+\newcommand{\highlight}[1]{\textcolor{napsAccent3}{\textbf{#1}}}
+
+%% Create a key insight box
+\newenvironment{keyinsight}{%
+  \begin{beamercolorbox}[sep=0.5em, rounded=true, shadow=false]{block title}
+    \textbf{Key Insight:}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=0.5em, rounded=true]{block body}
+}{%
+  \end{beamercolorbox}
+}
+
+%% Two-column layout helper
+\newcommand{\twocols}[2]{%
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      #1
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      #2
+    \end{column}
+  \end{columns}
+}
+
+%% Code listing style
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{napsAccent3}\bfseries,
+  commentstyle=\color{napsAccent4}\itshape,
+  stringstyle=\color{napsAccent5},
+  backgroundcolor=\color{napsLight!20},
+  frame=single,
+  framerule=0.5pt,
+  rulecolor=\color{napsAccent3},
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=2
+}
+
+\endinput
